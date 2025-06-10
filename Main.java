@@ -1,5 +1,4 @@
 // Main.java
-// Main driver for StatsCrammer; handles user input and displays study plan.
 import java.util.Scanner;
 
 public class Main {
@@ -7,14 +6,13 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         Unit[] units = UnitData.getAllUnits();
 
-        System.out.println("Welcome to StatsCrammer - Your AP Stats study crammer!");
+        System.out.println("Welcome to StatsCrammer - Your AP Stats study helper!");
         System.out.println("Please select a unit to study:");
         for (int i = 0; i < units.length; i++) {
             System.out.println((i + 1) + ". " + units[i].getName());
         }
 
         int unitChoice = 0;
-        // Prompt user to select valid unit number
         while (unitChoice < 1 || unitChoice > units.length) {
             System.out.print("Enter unit number (1-" + units.length + "): ");
             if (scanner.hasNextInt()) {
@@ -27,7 +25,6 @@ public class Main {
         Unit selectedUnit = units[unitChoice - 1];
 
         int time = -1;
-        // Prompt user to enter positive study time in minutes
         while (time < 0) {
             System.out.print("Enter how many minutes you have to study: ");
             if (scanner.hasNextInt()) {
@@ -41,18 +38,21 @@ public class Main {
             }
         }
 
-        // Get study materials for selected unit and time
-        StudyMethod[] methods = StudyMethod.selectMethods(time, selectedUnit);
+        scanner.nextLine(); // Consume newline after numeric input
 
+        StudyMethod[] methods = StudyMethod.selectMethods(time, selectedUnit);
         System.out.println("\nStudy Plan for " + selectedUnit.getName() + " with " + time + " minutes:");
 
-        // Display flashcards, quizzes, errors, and review notes
         for (StudyMethod method : methods) {
             if (method.getFlashcards() != null) {
                 System.out.println("\nFlashcards:");
                 for (Flashcard card : method.getFlashcards()) {
                     System.out.println("- Q: " + card.getQuestion());
+                    System.out.print("Press Enter to see the answer...");
+                    scanner.nextLine();
                     System.out.println("  A: " + card.getAnswer());
+                    System.out.print("Press Enter to continue...");
+                    scanner.nextLine();
                 }
             }
 
@@ -64,7 +64,25 @@ public class Main {
                     for (int i = 0; i < opts.length; i++) {
                         System.out.println("   " + (char)('A' + i) + ". " + opts[i]);
                     }
-                    System.out.println("  Correct answer: " + quiz.getCorrectAnswer());
+
+                    String answer = "";
+                    while (true) {
+                        System.out.print("Your answer (letter): ");
+                        answer = scanner.nextLine().trim().toUpperCase();
+                        int index = answer.length() == 1 ? answer.charAt(0) - 'A' : -1;
+                        if (index >= 0 && index < opts.length) {
+                            if (opts[index].equals(quiz.getCorrectAnswer())) {
+                                System.out.println("Correct!");
+                            } else {
+                                System.out.println("Incorrect. Correct answer: " + quiz.getCorrectAnswer());
+                            }
+                            break;
+                        } else {
+                            System.out.println("Invalid option. Try again.");
+                        }
+                    }
+                    System.out.print("Press Enter to continue...");
+                    scanner.nextLine();
                 }
             }
 
@@ -72,6 +90,8 @@ public class Main {
                 System.out.println("\nError Analysis Points:");
                 for (String error : method.getErrorAnalysis().getErrors()) {
                     System.out.println("- " + error);
+                    System.out.print("Press Enter to continue...");
+                    scanner.nextLine();
                 }
             }
 
@@ -79,12 +99,13 @@ public class Main {
                 System.out.println("\nReview Notes:");
                 for (String note : method.getReview().getReviewPoints()) {
                     System.out.println("- " + note);
+                    System.out.print("Press Enter to continue...");
+                    scanner.nextLine();
                 }
             }
         }
 
+        System.out.println("\nStudy session complete. Good luck on your test!");
         scanner.close();
     }
 }
-
-
