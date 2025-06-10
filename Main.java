@@ -1,6 +1,7 @@
 // Main.java
 public class Main {
     public static void main(String[] args) {
-        new AppRunner().run();
+        AppRunner app = new AppRunner();
+        app.run();
     }
 }

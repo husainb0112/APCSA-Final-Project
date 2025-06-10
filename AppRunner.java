@@ -1,4 +1,3 @@
-// AppRunner.java
 import java.util.Scanner;
 
 public class AppRunner {
@@ -12,10 +11,16 @@ public class AppRunner {
 
         while (true) {
             Unit selected = promptUnit(scanner, units);
-            if (selected == null) { exit(scanner); return; }
+            if (selected == null) { 
+                exit(scanner);
+                return;
+            }
 
             Integer time = promptTime(scanner);
-            if (time == null) { exit(scanner); return; }
+            if (time == null) { 
+                exit(scanner);
+                return;
+            }
 
             StudyMethod method = StudyMethod.selectMethods(time, selected)[0];
             runSession(scanner, selected, method);
@@ -63,11 +68,13 @@ public class AppRunner {
                 for (int i = 0; i < options.length; i++)
                     System.out.println((char)('A' + i) + ". " + options[i]);
                 String ans = promptAnswer(s, options.length);
-                System.out.println(
-                    options[ans.charAt(0) - 'A'].equals(q.getCorrectAnswer())
-                    ? "Correct!"
-                    : "Incorrect. Correct answer: " + q.getCorrectAnswer()
-                );
+
+                if (options[ans.charAt(0) - 'A'].equals(q.getCorrectAnswer())) {
+                    System.out.println("Correct!");
+                } else {
+                    System.out.println("Incorrect. Correct answer: " + q.getCorrectAnswer());
+                }
+
                 pauseOrExit(s, "");
             }
         }
@@ -116,7 +123,10 @@ public class AppRunner {
     public String promptAnswer(Scanner s, int optCount) {
         System.out.print("Your answer (A-" + (char)('A' + optCount - 1) + ") or 'exit': ");
         String input = s.nextLine().trim();
-        if ("exit".equalsIgnoreCase(input)) { exit(s); System.exit(0); }
+        if ("exit".equalsIgnoreCase(input)) { 
+            exit(s); 
+            System.exit(0); 
+        }
         if (input.matches("[A-" + (char)('A' + optCount - 1) + "]")) return input;
         return promptAnswer(s, optCount);
     }
@@ -124,7 +134,10 @@ public class AppRunner {
     public void pauseOrExit(Scanner s, String prompt) {
         if (!prompt.isEmpty()) System.out.print(prompt);
         String input = s.nextLine().trim();
-        if ("exit".equalsIgnoreCase(input)) { exit(s); System.exit(0); }
+        if ("exit".equalsIgnoreCase(input)) { 
+            exit(s); 
+            System.exit(0); 
+        }
     }
 
     public void exit(Scanner s) {
