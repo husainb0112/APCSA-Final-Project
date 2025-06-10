@@ -8,38 +8,70 @@ public class StudyMethod {
     private Review reviews;
 
     public StudyMethod(Flashcard[] f, Quiz[] q, MatchingActivity m, ContentMap c, ErrorAnalysis e, Review r) {
-        flashcards = f; 
-        quizzes = q; 
-        matching = m; 
-        conceptMap = c; 
-        errors = e; 
+        flashcards = f;
+        quizzes = q;
+        matching = m;
+        conceptMap = c;
+        errors = e;
         reviews = r;
     }
 
-    public Flashcard[] getFlashcards() { 
-        return flashcards; 
+    public Flashcard[] getFlashcards() {
+        return flashcards;
     }
-    public Quiz[] getQuizzes() { 
-        return quizzes; 
+
+    public Quiz[] getQuizzes() {
+        return quizzes;
     }
-    public MatchingActivity getMatchingActivity() { 
-        return matching; 
+
+    public MatchingActivity getMatchingActivity() {
+        return matching;
     }
-    public ContentMap getConceptMap() { 
-        return conceptMap; 
+
+    public ContentMap getConceptMap() {
+        return conceptMap;
     }
-    public ErrorAnalysis getErrorAnalysis() { 
-        return errors; 
+
+    public ErrorAnalysis getErrorAnalysis() {
+        return errors;
     }
-    public Review getReview() { 
-        return reviews; 
+
+    public Review getReview() {
+        return reviews;
     }
 
     public static StudyMethod[] selectMethods(int time, Unit unit) {
-        return new StudyMethod[]{
-            new StudyMethod(unit.getFlashcards(), unit.getQuizzes(),
-                            unit.getMatchingActivity(), unit.getConceptMap(),
-                            unit.getErrorAnalysis(), unit.getReviewNotes())
+        Flashcard[] f = unit.getFlashcards();
+        Quiz[] q = null;
+        MatchingActivity m = null;
+        ContentMap c = null;
+        ErrorAnalysis e = null;
+        Review r = null;
+
+        if (time <= 15) {
+            m = unit.getMatchingActivity();
+        } else if (time <= 30) {
+            m = unit.getMatchingActivity();
+            c = unit.getConceptMap();
+        } else if (time <= 45) {
+            m = unit.getMatchingActivity();
+            c = unit.getConceptMap();
+            r = unit.getReviewNotes();
+        } else if (time <= 120) {
+            m = unit.getMatchingActivity();
+            c = unit.getConceptMap();
+            r = unit.getReviewNotes();
+            e = unit.getErrorAnalysis();
+        } else {
+            m = unit.getMatchingActivity();
+            c = unit.getConceptMap();
+            r = unit.getReviewNotes();
+            e = unit.getErrorAnalysis();
+            q = unit.getQuizzes();
+        }
+
+        return new StudyMethod[] {
+            new StudyMethod(f, q, m, c, e, r)
         };
     }
 }
