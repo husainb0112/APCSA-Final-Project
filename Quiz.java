@@ -1,27 +1,20 @@
 // Quiz.java
-// Represents a multiple-choice quiz question.
 public class Quiz {
-    private String question;      // Quiz question
-    private String[] options;     // Possible answers
-    private String correctAnswer; // Correct option text
-
-    public Quiz(String question, String[] options, String correctAnswer) {
-        this.question = question;
-        this.options = options;
-        this.correctAnswer = correctAnswer;
+    private String question;
+    private String[] options;
+    private String correctAnswer;
+    public Quiz(String q, String[] o, String c) { 
+        question = q; 
+        options = o; 
+        correctAnswer = c; 
     }
-
-    public String getQuestion() {
-        return question;
+    public String getQuestion() { 
+        return question; 
     }
-
-    public String[] getOptions() {
-        return options;
+    public String[] getOptions() { 
+        return options; 
     }
-
-    public String getCorrectAnswer() {
-        return correctAnswer;
+    public String getCorrectAnswer() { 
+        return correctAnswer; 
     }
 }
-
-

@@ -1,15 +1,25 @@
 // Unit.java
-// Represents an AP Stats unit by name.
+// Base class for all AP Stats units
 public class Unit {
-    private String name; // Unit's name
-
-    public Unit(String name) {
-        this.name = name;
+    public String getName() { 
+        return "Generic Unit"; 
     }
-
-    public String getName() {
-        return name;
+    public Flashcard[] getFlashcards() { 
+        return null; 
+    }
+    public Quiz[] getQuizzes() { 
+        return null; 
+    }
+    public MatchingActivity getMatchingActivity() { 
+        return null; 
+    }
+    public ContentMap getConceptMap() { 
+        return null; 
+    }
+    public ErrorAnalysis getErrorAnalysis() { 
+        return null; 
+    }
+    public Review getReviewNotes() { 
+        return null; 
     }
 }
-
-

@@ -1,15 +1,10 @@
 // Review.java
-// Holds review points and tips for a unit.
 public class Review {
-    private String[] reviewPoints; // List of review notes
-
-    public Review(String[] reviewPoints) {
-        this.reviewPoints = reviewPoints;
+    private String[] notes;
+    public Review(String[] n) { 
+        notes = n; 
     }
-
-    public String[] getReviewPoints() {
-        return reviewPoints;
+    public String[] getReviewPoints() { 
+        return notes; 
     }
 }
-
-
