@@ -27,9 +27,7 @@ public class Setup {
     private String getUserInput(String validPattern) {
         System.out.print("> ");
         String input = scanner.nextLine().trim();
-        if ("exit".equalsIgnoreCase(input)) {
-            return "exit";
-        }
+        if ("exit".equalsIgnoreCase(input)) return "exit";
         if (!input.matches(validPattern)) {
             System.out.println("Invalid input, please try again.");
             return getUserInput(validPattern);

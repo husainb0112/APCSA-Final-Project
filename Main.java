@@ -25,7 +25,7 @@ public class Main {
             }
         }
 
-        System.out.println("Program exited.");
+        System.out.println("Good Luck!");
         scanner.close();
     }
 }

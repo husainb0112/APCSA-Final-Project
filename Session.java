@@ -92,7 +92,7 @@ public class Session {
         System.out.print("Your answer (A-" + (char)('A' + optionCount - 1) + ") or 'exit': ");
         String input = scanner.nextLine().trim();
         if ("exit".equalsIgnoreCase(input)) {
-            System.out.println("Exiting program.");
+            System.out.println("Good Luck!");
             System.exit(0);
         }
         if (!input.matches("[A-" + (char)('A' + optionCount - 1) + "]")) {
@@ -106,7 +106,7 @@ public class Session {
         if (!prompt.isEmpty()) System.out.print(prompt);
         String input = scanner.nextLine().trim();
         if ("exit".equalsIgnoreCase(input)) {
-            System.out.println("Exiting program.");
+            System.out.println("Good Luck!");
             System.exit(0);
         }
     }
