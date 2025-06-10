@@ -23,7 +23,7 @@ public class Main {
                 input = scanner.nextLine().trim();
 
                 if (input.equalsIgnoreCase("exit")) {
-                    System.out.println("Goodbye!");
+                    System.out.println("Good Luck!");
                     scanner.close();
                     return;
                 }
@@ -47,7 +47,7 @@ public class Main {
                 input = scanner.nextLine().trim();
 
                 if (input.equalsIgnoreCase("exit")) {
-                    System.out.println("Goodbye!");
+                    System.out.println("Good Luck!");
                     scanner.close();
                     return;
                 }
@@ -93,7 +93,7 @@ public class Main {
                             input = scanner.nextLine().trim();
 
                             if (input.equalsIgnoreCase("exit")) {
-                                System.out.println("Goodbye!");
+                                System.out.println("Good Luck!");
                                 scanner.close();
                                 return;
                             }
@@ -143,7 +143,7 @@ public class Main {
         System.out.print("Press Enter to continue or type 'exit' to quit: ");
         String input = scanner.nextLine();
         if (input.equalsIgnoreCase("exit")) {
-            System.out.println("Goodbye!");
+            System.out.println("Good Luck!");
             scanner.close();
             return true;
         }
