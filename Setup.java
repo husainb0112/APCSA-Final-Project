@@ -8,7 +8,7 @@ public class Setup {
     }
 
     public Unit promptUnit(Unit[] units) {
-        System.out.println("Select a unit or type 'exit':");
+        System.out.println("Welcome to StasCrammer: your last-minute  AP Stats study guide! Select a unit or type 'exit':");
         for (int i = 0; i < units.length; i++) {
             System.out.println((i + 1) + ". " + units[i]);
         }
