@@ -2,7 +2,7 @@
 // Base class for all AP Stats units
 public class Unit {
     public String getName() { 
-        return "Generic Unit"; 
+        return "Unit"; 
     }
     public Flashcard[] getFlashcards() { 
         return null; 

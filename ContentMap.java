@@ -1,10 +1,12 @@
 // ContentMap.java
 // Presents key concepts for mapping or review
 public class ContentMap {
-    private String[] keyConcepts;
+    private String[] concepts;
 
-    public ContentMap(String[] concepts) {
-        this.keyConcepts = concepts;
+    public ContentMap(String[] c) {
+        concepts = c;
     }
-    public String[] getKeyConcepts() { return keyConcepts; }
+    public String[] getKeyConcepts() { 
+        return concepts; 
+    }
 }

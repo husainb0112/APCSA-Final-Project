@@ -14,10 +14,10 @@ public class Main {
 
         while (true) {
             Unit selectedUnit = setup.promptUnit(units);
-            if (selectedUnit == null) break;  // exit requested
+            if (selectedUnit == null) break;
 
             Integer time = setup.promptTime();
-            if (time == null) break;  // exit requested
+            if (time == null) break;
 
             StudyMethod[] methods = StudyMethod.selectMethods(time, selectedUnit);
             for (StudyMethod method : methods) {
