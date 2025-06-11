@@ -3,14 +3,14 @@ import java.util.Scanner;
 public class Setup {
     private Scanner scanner;
 
-    public Setup(Scanner scanner) {
-        this.scanner = scanner;
+    public Setup(Scanner s) {
+        scanner = s;
     }
 
     public Unit promptUnit(Unit[] units) {
         System.out.println("Select a unit or type 'exit':");
         for (int i = 0; i < units.length; i++) {
-            System.out.println((i + 1) + ". " + units[i].getName());
+            System.out.println((i + 1) + ". " + units[i]);
         }
         String input = getUserInput("[1-9]|exit");
         if ("exit".equalsIgnoreCase(input)) return null;
@@ -24,13 +24,13 @@ public class Setup {
         return Integer.parseInt(input);
     }
 
-    private String getUserInput(String validPattern) {
+    public String getUserInput(String validInput) {
         System.out.print("> ");
         String input = scanner.nextLine().trim();
         if ("exit".equalsIgnoreCase(input)) return "exit";
-        if (!input.matches(validPattern)) {
+        if (!input.matches(validInput)) {
             System.out.println("Invalid input, please try again.");
-            return getUserInput(validPattern);
+            return getUserInput(validInput);
         }
         return input;
     }

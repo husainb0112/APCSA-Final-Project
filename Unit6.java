@@ -1,6 +1,7 @@
 // Unit6.java
 public class Unit6 extends Unit {
-    public String getName() {
+    @Override
+    public String toString() {
         return "Unit 6: Continuous Random Variables and Normal Distribution";
     }
 

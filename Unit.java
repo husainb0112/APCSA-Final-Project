@@ -1,7 +1,8 @@
 // Unit.java
 // Base class for all AP Stats units
 public class Unit {
-    public String getName() { 
+    @Override
+    public String toString() { 
         return "Unit"; 
     }
     public Flashcard[] getFlashcards() { 

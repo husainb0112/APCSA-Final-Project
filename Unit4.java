@@ -1,6 +1,7 @@
 // Unit4.java
 public class Unit4 extends Unit {
-    public String getName() {
+    @Override
+    public String toString() {
         return "Unit 4: Probability";
     }
 

@@ -1,6 +1,7 @@
 // Unit9.java
 public class Unit9 extends Unit {
-    public String getName() {
+    @Override
+    public String toString() {
         return "Unit 9: Inference for Quantitative Data";
     }
 

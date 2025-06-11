@@ -1,6 +1,7 @@
 // Unit1.java
 public class Unit1 extends Unit {
-    public String getName() {
+    @Override
+    public String toString () {
         return "Unit 1: Exploring One-Variable Data";
     }
 

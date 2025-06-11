@@ -2,14 +2,16 @@ import java.util.Scanner;
 
 public class Session {
     private Scanner scanner;
+    private String prompt;
 
     public Session(Scanner s) {
          scanner = s;
+         prompt = "Press Enter to continue";
     }
 
     public void runSession(Unit unit, StudyMethod method) {
-        System.out.println("\nStarting study session for: " + unit.getName());
-        pauseOrExit("Press Enter to start...");
+        System.out.println("\nStarting study session for: " + unit);
+        promptContinue("Press Enter to start");
 
         int total = countSteps(method);
         int step = 0;
@@ -20,9 +22,9 @@ public class Session {
             for (int i = 0; i < flashcards.length; i++) {
                 Flashcard card = flashcards[i];
                 System.out.println("Q: " + card.getQuestion());
-                pauseOrExit("Press Enter to see answer...");
+                promptContinue("Press Enter to see answer");
                 System.out.println("A: " + card.getAnswer());
-                pauseOrExit("Press Enter to continue...");
+                promptContinue(prompt);
             }
             step++;
             printProgress(step, total);
@@ -44,7 +46,7 @@ public class Session {
                 } else {
                     System.out.println("Incorrect. Correct answer: " + quiz.getCorrectAnswer());
                 }
-                pauseOrExit("Press Enter to continue...");
+                promptContinue(prompt);
             }
             step++;
             printProgress(step, total);
@@ -59,11 +61,11 @@ public class Session {
             for (int i = 0; i < terms.length; i++) {
                 System.out.println("- " + terms[i] + " = ?");
             }
-            pauseOrExit("Press Enter to see answers...");
+            promptContinue("Press Enter to see answers");
             for (int i = 0; i < terms.length; i++) {
                 System.out.println(terms[i] + " = " + defs[i]);
             }
-            pauseOrExit("Press Enter to continue...");
+            promptContinue(prompt);
             step++;
             printProgress(step, total);
         }
@@ -76,7 +78,7 @@ public class Session {
             for (int i = 0; i < concepts.length; i++) {
                 System.out.println("- " + concepts[i]);
             }
-            pauseOrExit("Press Enter to continue...");
+            promptContinue(prompt);
             step++;
             printProgress(step, total);
         }
@@ -88,7 +90,7 @@ public class Session {
             String[] errList = errors.getErrors();
             for (int i = 0; i < errList.length; i++) {
                 System.out.println("- " + errList[i]);
-                pauseOrExit("Press Enter to continue...");
+                promptContinue(prompt);
             }
             step++;
             printProgress(step, total);
@@ -101,7 +103,7 @@ public class Session {
             String[] reviewPoints = review.getReviewPoints();
             for (int i = 0; i < reviewPoints.length; i++) {
                 System.out.println("- " + reviewPoints[i]);
-                pauseOrExit("Press Enter to continue...");
+                promptContinue(prompt);
             }
             step++;
             printProgress(step, total);
@@ -110,7 +112,7 @@ public class Session {
         System.out.println("Study session complete. Returning to main menu.");
     }
 
-    private String promptAnswer(int optionCount) {
+    public String promptAnswer(int optionCount) {
         System.out.println("Your answer (A-" + (char) ('A' + optionCount - 1) + ") or 'exit':");
         System.out.print("> ");
         String input = scanner.nextLine().trim();
@@ -125,7 +127,7 @@ public class Session {
         return input;
     }
 
-    private void pauseOrExit(String prompt) {
+    public void promptContinue(String prompt) {
         if (!prompt.isEmpty()) {
             System.out.println(prompt);
             System.out.print("> ");
@@ -137,7 +139,7 @@ public class Session {
         }
     }
 
-    private int countSteps(StudyMethod m) {
+    public int countSteps(StudyMethod m) {
         int count = 0;
         if (m.getFlashcards() != null) count++;
         if (m.getQuizzes() != null) count++;
@@ -148,7 +150,7 @@ public class Session {
         return count;
     }
 
-    private void printProgress(int step, int total) {
+    public void printProgress(int step, int total) {
         int width = 30;
         int completed = (step * width) / total;
         System.out.print("Progress: [");

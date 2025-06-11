@@ -1,6 +1,7 @@
 // Unit7.java
 public class Unit7 extends Unit {
-    public String getName() {
+    @Override
+    public String toString() {
         return "Unit 7: Sampling Distributions";
     }
 

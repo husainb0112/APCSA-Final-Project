@@ -1,6 +1,7 @@
 // Unit5.java
 public class Unit5 extends Unit {
-    public String getName() {
+    @Override
+    public String toString() {
         return "Unit 5: Discrete Random Variables";
     }
 

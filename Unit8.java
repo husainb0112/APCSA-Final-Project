@@ -1,6 +1,7 @@
 // Unit8.java
 public class Unit8 extends Unit {
-    public String getName() {
+    @Override
+    public String toString() {
         return "Unit 8: Inference for Categorical Data";
     }
 
