@@ -11,6 +11,9 @@ public class Session {
         System.out.println("\nStarting study session for: " + unit.getName());
         pauseOrExit("Press Enter to start...");
 
+        int total = countSteps(method); // total number of components to study
+        int step = 0;
+
         // Flashcards
         Flashcard[] flashcards = method.getFlashcards();
         if (flashcards != null) {
@@ -18,8 +21,10 @@ public class Session {
                 System.out.println("Q: " + card.getQuestion());
                 pauseOrExit("Press Enter to see answer...");
                 System.out.println("A: " + card.getAnswer());
-                pauseOrExit("");
+                pauseOrExit("Press Enter to continue...");
             }
+            step++;
+            printProgress(step, total);
         }
 
         // Quizzes
@@ -29,7 +34,7 @@ public class Session {
                 System.out.println(quiz.getQuestion());
                 String[] options = quiz.getOptions();
                 for (int i = 0; i < options.length; i++) {
-                    System.out.println((char)('A' + i) + ". " + options[i]);
+                    System.out.println((char) ('A' + i) + ". " + options[i]);
                 }
                 String ans = promptAnswer(options.length);
                 if (options[ans.charAt(0) - 'A'].equals(quiz.getCorrectAnswer())) {
@@ -37,22 +42,28 @@ public class Session {
                 } else {
                     System.out.println("Incorrect. Correct answer: " + quiz.getCorrectAnswer());
                 }
-                pauseOrExit("");
+                pauseOrExit("Press Enter to continue...");
             }
+            step++;
+            printProgress(step, total);
         }
 
-        // Matching Activity
+        // Matching
         MatchingActivity match = method.getMatchingActivity();
         if (match != null) {
             System.out.println("Match these terms:");
             String[] terms = match.getTerms();
             String[] defs = match.getDefinitions();
-            for (String t : terms) System.out.println("- " + t + " = ?");
+            for (String t : terms) {
+                System.out.println("- " + t + " = ?");
+            }
             pauseOrExit("Press Enter to see answers...");
             for (int i = 0; i < terms.length; i++) {
                 System.out.println(terms[i] + " = " + defs[i]);
             }
-            pauseOrExit("");
+            pauseOrExit("Press Enter to continue...");
+            step++;
+            printProgress(step, total);
         }
 
         // Concept Map
@@ -62,7 +73,9 @@ public class Session {
             for (String concept : map.getKeyConcepts()) {
                 System.out.println("- " + concept);
             }
-            pauseOrExit("");
+            pauseOrExit("Press Enter to continue...");
+            step++;
+            printProgress(step, total);
         }
 
         // Error Analysis
@@ -71,22 +84,50 @@ public class Session {
             System.out.println("Common Mistakes:");
             for (String err : errors.getErrors()) {
                 System.out.println("- " + err);
-                pauseOrExit("");
+                pauseOrExit("Press Enter to continue...");
             }
+            step++;
+            printProgress(step, total);
         }
 
-        // Review Notes
+        // Review
         Review review = method.getReview();
         if (review != null) {
             System.out.println("Key Points:");
             for (String point : review.getReviewPoints()) {
                 System.out.println("- " + point);
-                pauseOrExit("");
+                pauseOrExit("Press Enter to continue...");
             }
+            step++;
+            printProgress(step, total);
         }
 
         System.out.println("Study session complete. Returning to main menu.");
     }
+
+    private int countSteps(StudyMethod m) {
+        int count = 0;
+        if (m.getFlashcards() != null) count++;
+        if (m.getQuizzes() != null) count++;
+        if (m.getMatchingActivity() != null) count++;
+        if (m.getConceptMap() != null) count++;
+        if (m.getErrorAnalysis() != null) count++;
+        if (m.getReview() != null) count++;
+        return count;
+    }
+
+    private void printProgress(int step, int total) {
+        int width = 30; // bar width
+        int completed = (step * width) / total;
+        System.out.print("Progress: [");
+        for (int i = 0; i < completed; i++) System.out.print("#");
+        for (int i = completed; i < width; i++) System.out.print(" ");
+        int percent = (step * 100) / total;
+        System.out.println("] " + percent + "%\n");
+    }
+
+    // ... existing promptAnswer and pauseOrExit methods unchanged
+}
 
     private String promptAnswer(int optionCount) {
         System.out.print("Your answer (A-" + (char)('A' + optionCount - 1) + ") or 'exit': ");
