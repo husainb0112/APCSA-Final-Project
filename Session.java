@@ -141,12 +141,24 @@ public class Session {
 
     public int countSteps(StudyMethod m) {
         int count = 0;
-        if (m.getFlashcards() != null) count++;
-        if (m.getQuizzes() != null) count++;
-        if (m.getMatchingActivity() != null) count++;
-        if (m.getConceptMap() != null) count++;
-        if (m.getErrorAnalysis() != null) count++;
-        if (m.getReview() != null) count++;
+        if (m.getFlashcards() != null)  {
+            count++;
+        }
+        if (m.getQuizzes() != null) { 
+            count++;
+        }
+        if (m.getMatchingActivity() != null) { 
+            count++;
+        }
+        if (m.getConceptMap() != null) { 
+            count++;
+        }
+        if (m.getErrorAnalysis() != null) { 
+            count++;
+        }
+        if (m.getReview() != null) { 
+            count++;
+        }
         return count;
     }
 
@@ -154,8 +166,12 @@ public class Session {
         int width = 30;
         int completed = (step * width) / total;
         System.out.print("Progress: [");
-        for (int i = 0; i < completed; i++) System.out.print("#");
-        for (int i = completed; i < width; i++) System.out.print(" ");
+        for (int i = 0; i < completed; i++) { 
+            System.out.print("#");
+        }
+        for (int i = completed; i < width; i++) { 
+            System.out.print(" ");
+        }
         int percent = (step * 100) / total;
         System.out.println("] " + percent + "%\n");
     }
